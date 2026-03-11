@@ -16,7 +16,7 @@ spec:
         app: backend
     spec:
       containers:
-      - image: amrg6885/3-tire-project:v1
+      - image: backend:v1
         name: 3-tire-project
         ports: 
         - containerPort: 8080
