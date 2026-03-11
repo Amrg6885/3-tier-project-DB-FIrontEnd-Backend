@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3-Tier Kubernetes App</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111827;
+      color: #e5e7eb;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+      font-size: 36px;
+    }
+
+    .version {
+      color: #9ca3af;
+      margin-bottom: 20px;
+    }
+
+    .status {
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .ok {
+      color: #22c55e;
+    }
+
+    .error {
+      color: #ef4444;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #3b82f6;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    .card {
+      background: #1f2937;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    pre {
+      text-align: left;
+      background: #0f172a;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>3-Tier Kubernetes Application</h1>
+  <div class="version">Frontend Version: v2</div>
+
+  <div id="status" class="status">Loading...</div>
+
+  <button onclick="fetchData()">Refresh</button>
+
+  <div class="card">
+    <pre id="output">Waiting for data...</pre>
+  </div>
+
+  <div class="footer">
+    DevOps Demo Project
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
