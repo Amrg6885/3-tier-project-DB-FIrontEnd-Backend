@@ -15,7 +15,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin 
 
       - name: build New fronend image version2
-        run : docker build -t frontend:v2  /frontendV2/ .
+        run : docker build -t frontend:v2  /frontendV2/Dockerfile .
 
       - name : tag image 
         run: docker tag frontend:v2  amrg6885/frontend:v2
