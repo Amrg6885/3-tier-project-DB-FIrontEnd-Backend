@@ -25,3 +25,6 @@ jobs:
 
       - name: check images 
         run: docker images
+
+      - name: deploy new image in kubernetes deployment
+        run: kubectl set image deployment/frontend frontend=amrg6885/frontend:v2 -n prod
