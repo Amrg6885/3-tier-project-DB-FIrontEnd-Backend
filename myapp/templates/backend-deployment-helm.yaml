@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: backend
+  namespace: prod
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag  }} 
+          name: 3-tire-project
+          ports: 
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: db-secret
+            - configMapRef:
+                name: db-config
+          livenessProbe:
+            httpGet:
+             path: /healthz
+             port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:  
+             path: /readyz
+             port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10        

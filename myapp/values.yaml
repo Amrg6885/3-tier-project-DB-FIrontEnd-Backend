@@ -1,0 +1,15 @@
+frontend:
+  replicaCount: 2
+  image:
+    repository: amrg6885/3-tier-project-frontend
+    tag: v1
+    pullPolicy: IfNotPresent
+
+
+backend:
+  replicaCount: 2
+  image:
+    repository: backend
+    tag: v1
+    pullPolicy: IfNotPresent
+
