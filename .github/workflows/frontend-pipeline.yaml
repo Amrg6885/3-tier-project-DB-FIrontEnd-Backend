@@ -1,0 +1,40 @@
+name: Build Docker
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: login to dockerhub 
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin 
+
+      - name: build New fronend image version2
+        run : docker build -t frontend:v2  ./frontendV2
+
+      - name: scan image with trivy
+        run: trivy image --severity HIGH,CRITICAL --exit-code 1 amrg6885/frontend:v3
+
+      - name : tag image 
+        run: docker tag frontend:v3  amrg6885/frontend:v3
+
+      - name: push to docker hub 
+        run: docker push amrg6885/frontend:v3
+
+      - name: check images 
+        run: docker images
+
+      - name: setup kubeconfig
+        run: |
+         mkdir -p $HOME/.kube
+         echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+
+      - name: deploy new image in kubernetes deployment
+        run: helm upgrade --install --set myapp ./myapp \
+             --set frontend.image.repository=amrg6885/frontend \
+             --set frontend.image.tag=3

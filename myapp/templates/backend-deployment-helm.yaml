@@ -16,7 +16,8 @@ spec:
         app: backend
     spec:
       containers:
-        - image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag  }} 
+        - image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag  }}
+          imagePullPolicy: IfNotPresent 
           name: 3-tire-project
           ports: 
             - containerPort: 8080
