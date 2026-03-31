@@ -18,7 +18,7 @@ jobs:
         run : docker build -t frontend:v3  ./frontendV2
 
       - name: scan image with trivy
-        run: trivy image --severity HIGH,CRITICAL --exit-code 1 amrg6885/frontend:v3
+        run: trivy image --severity HIGH,CRITICAL --exit-code 1 frontend:v3
 
       - name : tag image 
         run: docker tag frontend:v3  amrg6885/frontend:v3
