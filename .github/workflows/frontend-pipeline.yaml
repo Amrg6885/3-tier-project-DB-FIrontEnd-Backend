@@ -35,6 +35,5 @@ jobs:
          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
 
       - name: deploy new image in kubernetes deployment
-        run: helm upgrade --install  myapp ./myapp \
-             --set frontend.image.repository=amrg6885/frontend \
-             --set frontend.image.tag=3
+        run: helm upgrade --install  myapp ./myapp --set frontend.image.repository=amrg6885/frontend --set frontend.image.tag=v3
+             
